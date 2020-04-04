@@ -109,6 +109,7 @@
 		ED3CA8D52428C24B00CC82C4 /* InstagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				ED6AE4DD243944F600A0C47A /* AddPhoto */,
 				ED6AE4DA2436098D00A0C47A /* Login */,
 				EDE03D5924322E24008D7C5B /* UserProfile */,
 				ED3CA8EA24295A7F00CC82C4 /* Utils */,
@@ -139,6 +140,13 @@
 				ED3CA8DA2428C24B00CC82C4 /* SignUpController.swift */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		ED6AE4DD243944F600A0C47A /* AddPhoto */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AddPhoto;
 			sourceTree = "<group>";
 		};
 		EDE03D5424314635008D7C5B /* Recovered References */ = {
