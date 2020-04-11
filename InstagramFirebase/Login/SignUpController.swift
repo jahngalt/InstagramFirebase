@@ -152,14 +152,10 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
             }
             print("Successfully created user: ", authResult?.user.uid ?? "There is some problem")
             
-            
-             
             guard  let image = self.plusPhotoButton.imageView?.image else { return }
-            
             guard let uploadImage = image.jpegData(compressionQuality: 0.3) else { return }
             
             let fileName = NSUUID().uuidString
-            
             let ref = Storage.storage().reference().child("profile_images").child(fileName)
             ref.putData(uploadImage, metadata: nil) { (metadata, err) in
                 if let err = err {
@@ -174,7 +170,6 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
                         print("successfully uploaded profile image: ", url.absoluteString)
                         
                         guard let uid = authResult?.user.uid else { return   }
-
                         let dictionaryValues = ["username": username, "profileImageUrl": url.absoluteString]
                         let values = [uid: dictionaryValues]
 
@@ -249,34 +244,3 @@ class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINav
 }
 
 
-extension UIView {
-    func anchor(top: NSLayoutYAxisAnchor?, left: NSLayoutXAxisAnchor?, bottom: NSLayoutYAxisAnchor?, right: NSLayoutXAxisAnchor?,  paddingTop: CGFloat, paddingLeft: CGFloat, paddongBottom: CGFloat, paddingRight: CGFloat, width: CGFloat, height: CGFloat) {
-        translatesAutoresizingMaskIntoConstraints = false
-        if let top = top {
-            self.topAnchor.constraint(equalTo: top, constant: paddingTop).isActive = true
-        }
-        
-        
-        if let left = left {
-            self.leftAnchor.constraint(equalTo: left, constant: paddingLeft).isActive = true
-        }
-        
-        
-        if let bottom = bottom {
-            bottomAnchor.constraint(equalTo: bottom, constant: paddongBottom).isActive = true
-        }
-        
-        if let right = right {
-            rightAnchor.constraint(equalTo: right, constant: -paddingRight).isActive = true
-        }
-        
-        if width != 0 {
-            widthAnchor.constraint(equalToConstant: width).isActive = true
-        }
-        
-        if height != 0 {
-            heightAnchor.constraint(equalToConstant: height).isActive = true
-        }
-        
-    }
-}
