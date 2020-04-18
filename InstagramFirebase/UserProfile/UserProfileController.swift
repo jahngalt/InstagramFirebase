@@ -11,7 +11,7 @@ import Firebase
 
 class UserProfileController: UICollectionViewController,  UICollectionViewDelegateFlowLayout {
     
-    
+    var posts = [Post]()
     var user: User?
     let cellId = "cellId"
     
@@ -25,9 +25,14 @@ class UserProfileController: UICollectionViewController,  UICollectionViewDelega
         
         collectionView?.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: "headerID")
         
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: cellId)
+        collectionView?.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: cellId)
         setupLogOutButton()
+        
+        //fetchUser()
+        fetchOrderedPosts()
     }
+    
+  
     
     fileprivate func setupLogOutButton() {
         
@@ -68,12 +73,14 @@ class UserProfileController: UICollectionViewController,  UICollectionViewDelega
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath)
-        cell.backgroundColor = .purple
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: cellId, for: indexPath) as! UserProfilePhotoCell
+        
+        cell.post = posts[indexPath.item]
+        
         return cell
     }
     
@@ -106,6 +113,28 @@ class UserProfileController: UICollectionViewController,  UICollectionViewDelega
            super.present(viewControllerToPresent, animated: true, completion: nil)
            
        }
+    
+//    fileprivate func fetchPosts() {
+//        guard let uid = Auth.auth().currentUser?.uid else { return }
+//
+//        let ref = Database.database().reference().child("posts").child(uid)
+//        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+//            //print(snapshot.value)
+//            guard let dictionaries = snapshot.value as? [String: Any] else { return }
+//            dictionaries.forEach { (key, value) in
+//                guard let dictionary = value as? [String: Any] else { return }
+//                guard let userDictionary = snapshot.value as? [String: Any] else { return }
+//
+//                let user = User(dictionary: userDictionary)
+//                let post = Post(user: user, dictionary: dictionary)
+//                self.posts.append(post)
+//            }
+//
+//            self.collectionView.reloadData()
+//        }) { (err) in
+//            print("Failed to fetch posts", err)
+//        }
+//    }
 
     fileprivate func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -124,15 +153,37 @@ class UserProfileController: UICollectionViewController,  UICollectionViewDelega
             print("Failed to fetch user: ", err)
         }
     }
-}
-
-
-struct User {
-    let username: String
-    let profileImageUrl: String
     
-    init(dictionary: [String: Any]) {
-        self.username = dictionary["username"] as? String ?? ""
-        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
-    }
+    fileprivate func fetchOrderedPosts(){
+          
+          guard let uid = Auth.auth().currentUser?.uid else { return }
+          
+          let ref = Database.database().reference().child("posts").child(uid)
+          
+          ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+              
+              guard let dictionary = snapshot.value as? [String: Any] else { return }
+              let user  =  User(dictionary: dictionary) 
+              
+              let post = Post(user: user, dictionary: dictionary)
+              self.posts.append(post)
+              
+              self.collectionView.reloadData()
+              
+              
+          }) { (err) in
+              print("Failed to fetch ordered possts: ", err)
+          }
+      }
 }
+
+
+//struct User {
+//    let username: String
+//    let profileImageUrl: String
+//
+//    init(dictionary: [String: Any]) {
+//        self.username = dictionary["username"] as? String ?? ""
+//        self.profileImageUrl = dictionary["profileImageUrl"] as? String ?? ""
+//    }
+//}

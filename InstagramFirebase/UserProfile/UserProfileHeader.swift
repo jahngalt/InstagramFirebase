@@ -13,13 +13,18 @@ class UserProfileHeader: UICollectionViewCell {
     
     var user: User? {
         didSet {
-            setupProfileImage()
+            print("123")
+            guard let profileImageUrl  = user?.profileImageUrl else { return }
+            profileImageView.loadImage(urlString: profileImageUrl)
             usernameLabel.text = user?.username
+            
         }
     }
     
-    let profileImageView: UIImageView = {
-        let iv = UIImageView()
+    let profileImageView: CustomImageView = {
+        let iv = CustomImageView()
+        iv.contentMode = .scaleAspectFill
+        iv.clipsToBounds = true
         return iv
     }()
     
@@ -49,7 +54,7 @@ class UserProfileHeader: UICollectionViewCell {
     
     let usernameLabel: UILabel = {
         let label = UILabel()
-        label.text = "username"
+        label.text =  "pidr"
         label.font = UIFont.boldSystemFont(ofSize: 14)
         return label
     }()
@@ -168,29 +173,6 @@ class UserProfileHeader: UICollectionViewCell {
         bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddongBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
     
-    
-    
-    fileprivate func setupProfileImage() {
-        
-       guard let profileImageUrl = user?.profileImageUrl else { return }
-        
-        guard let url = URL(string: profileImageUrl) else { return }
-        URLSession.shared.dataTask(with: url) { (data, response, err) in
-            // check for the image, then construct the image using data
-            
-            if let err = err {
-                print("Failed to fetch profile image: ", err)
-                return
-            }
-            //perhaps check for response of 200 (HTTP OK)
-            guard let data = data else { return }
-            let image = UIImage(data: data)
-            //need to go back onto the main UI thread
-            DispatchQueue.main.async {
-                self.profileImageView.image = image
-            }
-        }.resume()
-    }
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
