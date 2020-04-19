@@ -9,18 +9,6 @@
 import UIKit
 import Firebase
 
-extension Database {
-    static func fetchUserWithUID(uid: String, comletion: @escaping (User) -> ()) {
-        print("fetching user with uid...", uid)
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            guard let userDictionary = snapshot.value as? [String: Any] else { return }
-            let user = User(uid: uid, dictionary: userDictionary)
-            comletion(user)
-        }, withCancel: { (err) in
-            print("Failed to fetch user for posts: ", err)
-        })
-    }
-}
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     var posts = [Post]()

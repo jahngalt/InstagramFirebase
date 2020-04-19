@@ -114,44 +114,36 @@ class UserProfileController: UICollectionViewController,  UICollectionViewDelega
            
        }
 
+    
     fileprivate func fetchUser() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
         
-        Database.database().reference().child("users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
-            print(snapshot.value ?? "")
-            
-            guard let dictionary = snapshot.value as? [String: Any] else { return }
-            
-            self.user = User(uid: uid, dictionary: dictionary)
+        Database.fetchUserWithUID(uid: uid) { (user) in
+            self.user = user
             self.navigationItem.title = self.user?.username
             
             self.collectionView?.reloadData()
-            
-        }) { (err) in
-            print("Failed to fetch user: ", err)
         }
     }
     
+    
     fileprivate func fetchOrderedPosts(){
-          
-          guard let uid = Auth.auth().currentUser?.uid else { return }
-          
-          let ref = Database.database().reference().child("posts").child(uid)
-          
-          ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
-              
-              guard let dictionary = snapshot.value as? [String: Any] else { return }
+        
+        guard let uid = Auth.auth().currentUser?.uid else { return }
+        let ref = Database.database().reference().child("posts").child(uid)
+        ref.queryOrdered(byChild: "creationDate").observe(.childAdded, with: { (snapshot) in
+            guard let dictionary = snapshot.value as? [String: Any] else { return }
             let user  =  User(uid: uid, dictionary: dictionary)
-              
-              let post = Post(user: user, dictionary: dictionary)
-              self.posts.insert(post, at: 0)
-              
-              self.collectionView.reloadData()
-              
-              
-          }) { (err) in
-              print("Failed to fetch ordered possts: ", err)
-          }
-      }
+            
+            let post = Post(user: user, dictionary: dictionary)
+            self.posts.insert(post, at: 0)
+            
+            self.collectionView.reloadData()
+            
+            
+        }) { (err) in
+            print("Failed to fetch ordered possts: ", err)
+        }
+    }
 }
 
