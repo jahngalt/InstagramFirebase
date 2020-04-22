@@ -11,6 +11,11 @@ import Firebase
 
 
 class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
+    
+    deinit {
+           print("deinit is done")
+       }
+    
     var posts = [Post]()
     let cellId = "cellId"
     

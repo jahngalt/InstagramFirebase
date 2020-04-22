@@ -10,6 +10,7 @@
 		E0077EA90630904499C2DB1D /* libPods-InstagramFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A1D1158E6BA7F45C4899FB89 /* libPods-InstagramFirebase.a */; };
 		ED010CF42449DB3000225D74 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED010CF32449DB3000225D74 /* User.swift */; };
 		ED010CF6244C526900225D74 /* FirebaseUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED010CF5244C526900225D74 /* FirebaseUtils.swift */; };
+		ED010CF9244C65C100225D74 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED010CF8244C65C100225D74 /* UserSearchController.swift */; };
 		ED0B7CBB24406E9100026D7B /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B7CBA24406E9100026D7B /* SharePhotoController.swift */; };
 		ED0B7CBE244211BF00026D7B /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B7CBD244211BF00026D7B /* Post.swift */; };
 		ED0B7CC02442603B00026D7B /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED0B7CBF2442603B00026D7B /* UserProfilePhotoCell.swift */; };
@@ -26,6 +27,7 @@
 		ED6AE4DF243950CC00A0C47A /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6AE4DE243950CC00A0C47A /* PhotoSelectorController.swift */; };
 		ED6AE4E1243A3D8500A0C47A /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6AE4E0243A3D8500A0C47A /* PhotoSelectorCell.swift */; };
 		ED6AE4E3243BDF0C00A0C47A /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED6AE4E2243BDF0C00A0C47A /* PhotoSelectorHeader.swift */; };
+		ED97A2C9244F9728007136BD /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED97A2C8244F9728007136BD /* UserSearchCell.swift */; };
 		EDDC61C52444640B00B919F6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC61C42444640B00B919F6 /* HomeController.swift */; };
 		EDDC61C72444718700B919F6 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC61C62444718700B919F6 /* HomePostCell.swift */; };
 		EDE03D5024310AAD008D7C5B /* Pods_InstagramFirebase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E02309C645ED721FC5B3DFE /* Pods_InstagramFirebase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -55,6 +57,7 @@
 		A1D1158E6BA7F45C4899FB89 /* libPods-InstagramFirebase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-InstagramFirebase.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED010CF32449DB3000225D74 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		ED010CF5244C526900225D74 /* FirebaseUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseUtils.swift; sourceTree = "<group>"; };
+		ED010CF8244C65C100225D74 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		ED0B7CBA24406E9100026D7B /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
 		ED0B7CBD244211BF00026D7B /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		ED0B7CBF2442603B00026D7B /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
@@ -73,6 +76,7 @@
 		ED6AE4DE243950CC00A0C47A /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		ED6AE4E0243A3D8500A0C47A /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		ED6AE4E2243BDF0C00A0C47A /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
+		ED97A2C8244F9728007136BD /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		EDDC61C42444640B00B919F6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		EDDC61C62444718700B919F6 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		EDE03D5524320161008D7C5B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -109,6 +113,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		ED010CF7244C65A800225D74 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				ED010CF8244C65C100225D74 /* UserSearchController.swift */,
+				ED97A2C8244F9728007136BD /* UserSearchCell.swift */,
+			);
+			path = Search;
+			sourceTree = "<group>";
+		};
 		ED0B7CBC2442119D00026D7B /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -140,6 +153,7 @@
 		ED3CA8D52428C24B00CC82C4 /* InstagramFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				ED010CF7244C65A800225D74 /* Search */,
 				EDDC61C3244463C500B919F6 /* Home */,
 				ED0B7CBC2442119D00026D7B /* Models */,
 				ED6AE4DD243944F600A0C47A /* AddPhoto */,
@@ -324,6 +338,7 @@
 				ED0B7CBE244211BF00026D7B /* Post.swift in Sources */,
 				EDE03D58243202ED008D7C5B /* UserProfileController.swift in Sources */,
 				EDE03D5624320161008D7C5B /* MainTabBarController.swift in Sources */,
+				ED010CF9244C65C100225D74 /* UserSearchController.swift in Sources */,
 				ED0B7CBB24406E9100026D7B /* SharePhotoController.swift in Sources */,
 				ED6AE4E3243BDF0C00A0C47A /* PhotoSelectorHeader.swift in Sources */,
 				ED6AE4DC243609AE00A0C47A /* LoginController.swift in Sources */,
@@ -332,6 +347,7 @@
 				ED010CF42449DB3000225D74 /* User.swift in Sources */,
 				ED0B7CC02442603B00026D7B /* UserProfilePhotoCell.swift in Sources */,
 				ED3CA8EC24295A9D00CC82C4 /* Extensions.swift in Sources */,
+				ED97A2C9244F9728007136BD /* UserSearchCell.swift in Sources */,
 				ED6AE4E1243A3D8500A0C47A /* PhotoSelectorCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -391,7 +407,7 @@
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
-				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;

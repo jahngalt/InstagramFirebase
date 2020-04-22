@@ -11,6 +11,10 @@ import Firebase
 
 class SignUpController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
+    deinit {
+           print("deinit is done")
+       }
+    
     var ref: DatabaseReference!
     
     

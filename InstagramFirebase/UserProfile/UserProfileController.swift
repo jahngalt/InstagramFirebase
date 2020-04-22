@@ -11,6 +11,10 @@ import Firebase
 
 class UserProfileController: UICollectionViewController,  UICollectionViewDelegateFlowLayout {
     
+    deinit {
+           print("deinit is done")
+       }
+    
     var posts = [Post]()
     var user: User?
     let cellId = "cellId"
@@ -19,7 +23,7 @@ class UserProfileController: UICollectionViewController,  UICollectionViewDelega
         super.viewDidLoad()
         self.modalPresentationStyle = .fullScreen
         collectionView?.backgroundColor = .white
-        navigationItem.title = Auth.auth().currentUser?.uid
+       
         
         fetchUser()
         

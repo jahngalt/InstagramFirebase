@@ -12,6 +12,10 @@ import Firebase
 class LoginController: UIViewController {
     
     
+    deinit {
+           print("deinit is done")
+       }
+    
     
     let logoContainerView: UIView = {
         let view = UIView()

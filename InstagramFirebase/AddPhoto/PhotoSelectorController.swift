@@ -11,6 +11,10 @@ import Photos
 
 class PhotoSelectorController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    deinit {
+           print("deinit is done")
+       }
+    
     let cellId = "cellId"
     let headerId = "headerId"
     var images = [UIImage]()
