@@ -13,11 +13,11 @@ import Firebase
 
 class UserSearchController: UICollectionViewController, UICollectionViewDelegateFlowLayout, UISearchBarDelegate {
     
-    deinit {
-        print("deinit is done")
-    }
+    
     
     let cellId = "cellId"
+    var filteredUsers = [User]()
+    var users = [User]()
     
     // we can't acces to search bar through 'self' if we use 'let'. Should use 'lazy var'
     lazy var searchBar: UISearchBar = {
@@ -75,13 +75,15 @@ class UserSearchController: UICollectionViewController, UICollectionViewDelegate
         searchBar.isHidden = true
         searchBar.resignFirstResponder()
          
+        let user = filteredUsers[indexPath.item]
+        
         let userProfileController = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        userProfileController.userId = user.uid
         navigationController?.pushViewController(userProfileController, animated: true)
         
     }
     
-    var filteredUsers = [User]()
-    var users = [User]()
+   
     
     fileprivate func fetchUsers() {
         let ref = Database.database().reference().child("users")

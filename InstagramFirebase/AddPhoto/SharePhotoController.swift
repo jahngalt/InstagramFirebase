@@ -55,6 +55,8 @@ class SharePhotoController: UIViewController {
         textView.anchor(top: containerView.topAnchor, left: imageView.rightAnchor, bottom: containerView.bottomAnchor, right: containerView.rightAnchor, paddingTop: 0, paddingLeft: 4, paddongBottom: 0, paddingRight: 0, width: 0, height: 0)
     }
     
+    static let updateFeedNotificationName = NSNotification.Name(rawValue: "UpdateFeed")
+    
     @objc func handleShare() {
         
         guard let caption = textView.text, caption.count > 0  else { return }
@@ -90,6 +92,9 @@ class SharePhotoController: UIViewController {
                         }
                         self.dismiss(animated: true, completion: nil)
                         print("Successfully saved info to DB")
+                        
+                        
+                        NotificationCenter.default.post(name: SharePhotoController.updateFeedNotificationName, object: nil)
                         
                     }
                 }
