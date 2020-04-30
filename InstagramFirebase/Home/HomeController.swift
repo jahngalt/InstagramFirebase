@@ -56,8 +56,18 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     func setupNavigationItems() {
         navigationItem.titleView = UIImageView(image: #imageLiteral(resourceName: "logo2"))
+        
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "camera3").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleCamera))
     }
     
+    
+    @objc func handleCamera() {
+        print("showing camera")
+        
+        // Present camera controller
+        let cameraController = CameraController()
+        present(cameraController, animated: true, completion: nil)
+    }
     
     fileprivate func fetchPosts() {
         guard let uid = Auth.auth().currentUser?.uid else { return }
@@ -111,6 +121,13 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
             print("Failed to fetch following user id:  ", err)
         }
     }
+    override func present(_ viewControllerToPresent: UIViewController,
+                             animated flag: Bool,
+                             completion: (() -> Void)? = nil) {
+        viewControllerToPresent.modalPresentationStyle = .fullScreen
+           super.present(viewControllerToPresent, animated: true, completion: nil)
+    }
+    
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return posts.count
