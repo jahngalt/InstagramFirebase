@@ -7,13 +7,11 @@
 //
 
 import UIKit
-
-
 //Audio/video foundation
 import AVFoundation
 
 
-class CameraController: UIViewController {
+class CameraController: UIViewController, AVCapturePhotoCaptureDelegate, UIViewControllerTransitioningDelegate {
     
     let dismissButton: UIButton = {
         let button  = UIButton(type: .system)
@@ -22,6 +20,13 @@ class CameraController: UIViewController {
         return button
     }()
     
+    
+//    override func present(_ viewControllerToPresent: UIViewController,
+//                                animated flag: Bool,
+//                                completion: (() -> Void)? = nil) {
+//           viewControllerToPresent.modalPresentationStyle = .fullScreen
+//              super.present(viewControllerToPresent, animated: true, completion: nil)
+//       }
     
     let capturePhotoButton: UIButton = {
         let button = UIButton(type: .system)
@@ -33,10 +38,45 @@ class CameraController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        transitioningDelegate = self
+        
         setupCaptureSession()
         setupHUD()
     }
+        
     
+    let customAnimationPresenter = CustomAnimationPresenter()
+    let customAnimationDismisser = CustomAnimationDismisser()
+    
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        return customAnimationPresenter
+    }
+    
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        
+        
+        return customAnimationDismisser
+    }
+
+    // Capturing photo
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        let imageData = photo.fileDataRepresentation()
+        let previewImage = UIImage(data: imageData!)
+        
+        let containerView = PreviewPhotoContainerView()
+        view.addSubview(containerView)
+        containerView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddongBottom: 0, paddingRight: 0, width: 0, height: 0)
+        
+        containerView.previewImageView.image = previewImage
+        
+        /* let previewImageView = UIImageView(image: previewImage)
+        view.addSubview(previewImageView)
+        previewImageView.anchor(top: view.topAnchor, left: view.leftAnchor, bottom: view.bottomAnchor, right: view.rightAnchor, paddingTop: 0, paddingLeft: 0, paddongBottom: 0, paddingRight: 0, width: 0, height: 0) */
+    }
     
     override var prefersStatusBarHidden: Bool {
         return true
@@ -49,8 +89,14 @@ class CameraController: UIViewController {
     
     @objc func handleCapturePhoto() {
         print("Capturing photo...")
+        
+        let settings = AVCapturePhotoSettings()
+        guard let previewFormatType = settings.availablePreviewPhotoPixelFormatTypes.first else { return }
+        settings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+        output.capturePhoto(with: settings, delegate: self)
     }
-    
+
+    let output = AVCapturePhotoOutput()
     
     //work with camera
     fileprivate func setupCaptureSession() {
@@ -68,13 +114,13 @@ class CameraController: UIViewController {
             }
         }
         //2. setup outputs
-        let output = AVCapturePhotoOutput()
+        
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
         //3. setup output preview
         let previewLayer = AVCaptureVideoPreviewLayer(session: captureSession)
-        previewLayer.frame = view.frame
+        previewLayer.frame =  self.view.layer.bounds
         view.layer.addSublayer(previewLayer)
         captureSession.startRunning()
     }
