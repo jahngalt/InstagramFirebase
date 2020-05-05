@@ -38,6 +38,7 @@
 		EDE03D5624320161008D7C5B /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE03D5524320161008D7C5B /* MainTabBarController.swift */; };
 		EDE03D58243202ED008D7C5B /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE03D57243202ED008D7C5B /* UserProfileController.swift */; };
 		EDE03D5B24322E41008D7C5B /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDE03D5A24322E41008D7C5B /* UserProfileHeader.swift */; };
+		EDF5C7C424617F5500EEFE98 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDF5C7C324617F5500EEFE98 /* CommentsController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -90,6 +91,7 @@
 		EDE03D5524320161008D7C5B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		EDE03D57243202ED008D7C5B /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		EDE03D5A24322E41008D7C5B /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		EDF5C7C324617F5500EEFE98 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -227,6 +229,7 @@
 			children = (
 				EDDC61C42444640B00B919F6 /* HomeController.swift */,
 				EDDC61C62444718700B919F6 /* HomePostCell.swift */,
+				EDF5C7C324617F5500EEFE98 /* CommentsController.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -353,6 +356,7 @@
 				ED9186802460955D006B5CF0 /* CustomAnimationDismisser.swift in Sources */,
 				EDE03D5B24322E41008D7C5B /* UserProfileHeader.swift in Sources */,
 				ED3CA8D72428C24B00CC82C4 /* AppDelegate.swift in Sources */,
+				EDF5C7C424617F5500EEFE98 /* CommentsController.swift in Sources */,
 				ED91867E245E1E10006B5CF0 /* CustomAnimationPresenter.swift in Sources */,
 				ED6AE4DF243950CC00A0C47A /* PhotoSelectorController.swift in Sources */,
 				ED010CF6244C526900225D74 /* FirebaseUtils.swift in Sources */,
