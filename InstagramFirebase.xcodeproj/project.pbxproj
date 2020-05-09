@@ -32,6 +32,8 @@
 		ED91867E245E1E10006B5CF0 /* CustomAnimationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91867D245E1E10006B5CF0 /* CustomAnimationPresenter.swift */; };
 		ED9186802460955D006B5CF0 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED91867F2460955D006B5CF0 /* CustomAnimationDismisser.swift */; };
 		ED97A2C9244F9728007136BD /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED97A2C8244F9728007136BD /* UserSearchCell.swift */; };
+		EDBF95342463F4DF007C877D /* CommentsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF95332463F4DF007C877D /* CommentsCell.swift */; };
+		EDBF9536246478BE007C877D /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDBF9535246478BE007C877D /* Comment.swift */; };
 		EDDC61C52444640B00B919F6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC61C42444640B00B919F6 /* HomeController.swift */; };
 		EDDC61C72444718700B919F6 /* HomePostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EDDC61C62444718700B919F6 /* HomePostCell.swift */; };
 		EDE03D5024310AAD008D7C5B /* Pods_InstagramFirebase.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 5E02309C645ED721FC5B3DFE /* Pods_InstagramFirebase.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -86,6 +88,8 @@
 		ED91867D245E1E10006B5CF0 /* CustomAnimationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresenter.swift; sourceTree = "<group>"; };
 		ED91867F2460955D006B5CF0 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
 		ED97A2C8244F9728007136BD /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
+		EDBF95332463F4DF007C877D /* CommentsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsCell.swift; sourceTree = "<group>"; };
+		EDBF9535246478BE007C877D /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		EDDC61C42444640B00B919F6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
 		EDDC61C62444718700B919F6 /* HomePostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomePostCell.swift; sourceTree = "<group>"; };
 		EDE03D5524320161008D7C5B /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
@@ -137,6 +141,7 @@
 			children = (
 				ED0B7CBD244211BF00026D7B /* Post.swift */,
 				ED010CF32449DB3000225D74 /* User.swift */,
+				EDBF9535246478BE007C877D /* Comment.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -230,6 +235,7 @@
 				EDDC61C42444640B00B919F6 /* HomeController.swift */,
 				EDDC61C62444718700B919F6 /* HomePostCell.swift */,
 				EDF5C7C324617F5500EEFE98 /* CommentsController.swift */,
+				EDBF95332463F4DF007C877D /* CommentsCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -354,6 +360,7 @@
 				ED3CA8DB2428C24B00CC82C4 /* SignUpController.swift in Sources */,
 				EDDC61C72444718700B919F6 /* HomePostCell.swift in Sources */,
 				ED9186802460955D006B5CF0 /* CustomAnimationDismisser.swift in Sources */,
+				EDBF9536246478BE007C877D /* Comment.swift in Sources */,
 				EDE03D5B24322E41008D7C5B /* UserProfileHeader.swift in Sources */,
 				ED3CA8D72428C24B00CC82C4 /* AppDelegate.swift in Sources */,
 				EDF5C7C424617F5500EEFE98 /* CommentsController.swift in Sources */,
@@ -365,6 +372,7 @@
 				ED0B7CBE244211BF00026D7B /* Post.swift in Sources */,
 				EDE03D58243202ED008D7C5B /* UserProfileController.swift in Sources */,
 				EDE03D5624320161008D7C5B /* MainTabBarController.swift in Sources */,
+				EDBF95342463F4DF007C877D /* CommentsCell.swift in Sources */,
 				ED010CF9244C65C100225D74 /* UserSearchController.swift in Sources */,
 				ED0B7CBB24406E9100026D7B /* SharePhotoController.swift in Sources */,
 				ED6AE4E3243BDF0C00A0C47A /* PhotoSelectorHeader.swift in Sources */,
