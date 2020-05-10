@@ -9,15 +9,22 @@
 import UIKit
 import Firebase
 
+
+protocol UserProfileHeaderDelegate {
+    func didChangeToListView()
+    func didChangeToGridView()
+}
+
+
 class UserProfileHeader: UICollectionViewCell {
+    
+    var delegate: UserProfileHeaderDelegate?
     
     var user: User? {
         didSet {
-            print("123")
             guard let profileImageUrl  = user?.profileImageUrl else { return }
             profileImageView.loadImage(urlString: profileImageUrl)
             usernameLabel.text = user?.username
-//            editProfileButton.setTitle("Follow", for: .normal)
             setupEditButton()
             
         }
@@ -31,17 +38,19 @@ class UserProfileHeader: UICollectionViewCell {
     }()
     
     
-    let gridButton: UIButton = {
+    lazy var gridButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "grid"), for: .normal)
+        button.addTarget(self, action: #selector(handleChangeToGridView), for: .touchUpInside)
         return button
     }()
     
     
-    let listButton: UIButton = {
+    lazy var listButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "list"), for: .normal)
         button.tintColor = UIColor(white: 0, alpha: 0.2)
+        button.addTarget(self, action: #selector(handeChangeToList), for: .touchUpInside)
         return button
     }()
     
@@ -146,8 +155,6 @@ class UserProfileHeader: UICollectionViewCell {
                 self.editProfileFollowButton.setTitleColor(.black, for: .normal)
             }
         }
-        
-        
     }
     
     
@@ -248,7 +255,28 @@ class UserProfileHeader: UICollectionViewCell {
         bottomDividerView.anchor(top: stackView.bottomAnchor, left: leftAnchor, bottom: nil, right: rightAnchor, paddingTop: 0, paddingLeft: 0, paddongBottom: 0, paddingRight: 0, width: 0, height: 0.5)
     }
     
+    
+    //Change to listVC on main screen
+    @objc fileprivate func handeChangeToList() {
+        print("changing to the list view")
+        listButton.tintColor = .mainBlue()
+        gridButton.tintColor = UIColor(white: 0, alpha: 0.2)
+        delegate?.didChangeToListView()
+    }
+    
+    
+    //Change to gridVC
+       @objc func handleChangeToGridView() {
+           print("changing to the grid view")
+           gridButton.tintColor = .mainBlue()
+           listButton.tintColor = UIColor(white: 0, alpha: 0.2)
+           delegate?.didChangeToGridView()
+       }
+    
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+   
 }

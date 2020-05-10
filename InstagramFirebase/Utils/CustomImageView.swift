@@ -16,16 +16,18 @@ class CustomImageView: UIImageView {
     
     func loadImage(urlString: String) {
         
-        self.image = nil
-        
         lastURLUsedToLoadImage = urlString
         
-        guard let url = URL(string: urlString) else { return }
+        self.image = nil
         
         if let cachedImage = imageCash[urlString] {
             self.image = cachedImage
             return
         }
+        
+        guard let url = URL(string: urlString) else { return }
+        
+        
 
         URLSession.shared.dataTask(with: url) { (data, response, err) in
             if let err = err {
